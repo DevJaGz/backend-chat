@@ -1,5 +1,3 @@
-const DB_LIST = [];
-
 const addMessage = (message) => {
 	DB_LIST.push(message);
 };
