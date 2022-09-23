@@ -17,7 +17,7 @@ export const addMessage = (user, message) => {
 
 export const getMessages = () => {
 	return new Promise((resolve) => {
-		const messages = store.get();
+		const messages = store.list();
 		resolve(messages);
 	});
 };

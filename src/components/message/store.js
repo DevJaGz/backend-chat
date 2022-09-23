@@ -1,10 +1,10 @@
-const list = [];
+const DB_LIST = [];
 
 const addMessage = (message) => {
-	list.push(message);
+	DB_LIST.push(message);
 };
 
-const getMessages = () => list;
+const getMessages = () => DB_LIST;
 
 export const add = addMessage;
-export const get = getMessages;
+export const list = getMessages;
