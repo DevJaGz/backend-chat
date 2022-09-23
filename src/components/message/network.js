@@ -20,5 +20,5 @@ messageRouter.post('/', async function (req, res) {
 				'<ADD-MESSAGE> There is no user or message in the request'
 			)
 		);
-	response.sucess(req, res, message);
+	response.sucess(req, res, message, 201);
 });
