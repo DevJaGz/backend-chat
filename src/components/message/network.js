@@ -4,12 +4,6 @@ import * as controllers from './controller.js';
 
 export const messageRouter = express.Router();
 
-// middleware that is specific to this router
-messageRouter.use(function timeLog(req, res, next) {
-	console.log('(Message Router) Time: ', Date.now());
-	next();
-});
-
 messageRouter.get('/', function (req, res) {
 	response.sucess(req, res, 'Works!');
 });
