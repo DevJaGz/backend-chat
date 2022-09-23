@@ -1,3 +1,5 @@
+import * as store from './store.js';
+
 export const addMessage = (user, message) => {
 	return new Promise((resolve, reject) => {
 		if (!user || !message) {
@@ -8,6 +10,14 @@ export const addMessage = (user, message) => {
 			message,
 			date: new Date()
 		};
+		store.add(message);
 		resolve(fullMessage);
+	});
+};
+
+export const getMessages = () => {
+	return new Promise((resolve) => {
+		const messages = store.get();
+		resolve(messages);
 	});
 };

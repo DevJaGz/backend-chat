@@ -4,12 +4,15 @@ import * as controllers from './controller.js';
 
 export const messageRouter = express.Router();
 
-messageRouter.get('/', function (req, res) {
-	response.sucess(req, res, 'Works!');
+messageRouter.get('/', async function (req, res) {
+	const msg = await controllers
+		.getMessages()
+		.catch((error) => response.error(req, res, error, 500, '<GET-MESSAGES> Can not return the messages'));
+	response.sucess(req, res, msg, 200);
 });
 
 messageRouter.post('/', async function (req, res) {
-	const message = await controllers
+	const msg = await controllers
 		.addMessage(req.body.user, req.body.message)
 		.catch((code) =>
 			response.error(
@@ -20,5 +23,5 @@ messageRouter.post('/', async function (req, res) {
 				'<ADD-MESSAGE> There is no user or message in the request'
 			)
 		);
-	response.sucess(req, res, message, 201);
+	response.sucess(req, res, msg, 201);
 });
