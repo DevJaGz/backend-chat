@@ -10,7 +10,7 @@ DBConnection(); // Set Database Connection
 /* -------------------------------------------------------------------------- */
 server.use(express.json()); // Read and Parse Body
 /* --------------------------------- ROUTES --------------------------------- */
-routes(server);
+routes(server); // Set App Routes
 
 /* -------------------------------------------------------------------------- */
 /*                                 RUN SERVER                                 */
