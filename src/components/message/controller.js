@@ -10,7 +10,7 @@ export const addMessage = (user, message) => {
 			message,
 			date: new Date()
 		};
-		store.add(message);
+		store.add(fullMessage);
 		resolve(fullMessage);
 	});
 };

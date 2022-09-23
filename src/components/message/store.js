@@ -1,5 +1,8 @@
-const addMessage = (message) => {
-	DB_LIST.push(message);
+import { Message } from './model.js';
+
+const addMessage = async (message) => {
+	const DBMessage = new Message(message);
+	await DBMessage.save().catch((e) => console.error(e));
 };
 
 const getMessages = () => DB_LIST;
