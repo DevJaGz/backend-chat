@@ -13,9 +13,11 @@ const getMessages = async (filterUser) => {
 
 const getMessageById = (id) => Message.findById(id);
 
-const updateMessage = (id, message) => Message.updateOne({ id }, message);
+const updateMessage = (id, message) => Message.updateOne({ _id: id }, message);
 
+const deleteMessage = (id) => Message.deleteOne({ _id: id });
 export const add = addMessage;
 export const list = getMessages;
 export const get = getMessageById;
 export const update = updateMessage;
+export const del = deleteMessage;

@@ -32,3 +32,10 @@ messageRouter.patch('/:id', async function (req, res) {
 		.catch((code) => response.error(req, res, 'id is missing', code, '<UPDATE-MESSAGE> id is missing'));
 	response.sucess(req, res, msg, 200);
 });
+
+messageRouter.delete('/:id', async function (req, res) {
+	const msg = await controllers
+		.deleteMessage(req)
+		.catch((code) => response.error(req, res, 'id is missing', code, '<DELETE-MESSAGE> id is missing'));
+	response.sucess(req, res, msg, 200);
+});

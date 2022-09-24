@@ -41,3 +41,13 @@ export const updateMessage = (req) => {
 		resolve(fullMessage);
 	});
 };
+
+export const deleteMessage = (req) => {
+	return new Promise(async (resolve, reject) => {
+		const id = req.params.id;
+		if (!id) reject(400);
+		const messageDeleted = await store.del(id);
+		if (messageDeleted.deletedCount === 0) reject(400);
+		resolve(id);
+	});
+};
