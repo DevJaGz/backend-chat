@@ -24,10 +24,19 @@ export const getMessages = () => {
 
 export const updateMessage = (req) => {
 	return new Promise(async (resolve, reject) => {
-		if (!req.params.id) reject(400);
-		const message = await store.get(req.params.id).catch(console.error);
+		const id = req.params.id;
+		if (!id) reject(400);
+		const message = await store.get(id).catch(console.error);
 		if (!message) reject(400);
-
-		resolve(message);
+		const messageObj = message.toObject();
+		const { user: newUser, message: newMessage } = req.body;
+		const fullMessage = {
+			user: newUser ? newUser : messageObj.user,
+			message: newMessage ? newMessage : messageObj.message,
+			date: new Date()
+		};
+		const messageUpdated = await store.update(id, fullMessage).catch(console.error);
+		if (!messageUpdated) reject(500);
+		resolve(fullMessage);
 	});
 };
