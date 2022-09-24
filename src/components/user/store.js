@@ -5,4 +5,7 @@ const addUser = async (name) => {
 	await DBUser.save().catch((e) => console.error(e));
 };
 
+const getUsers = async () => await User.find();
+
 export const add = addUser;
+export const list = getUsers;
