@@ -27,19 +27,18 @@ messageRouter.get('/', async function (req, res) {
 });
 
 messageRouter.post('/', upload.single('file'), async function (req, res) {
-	response.sucess(req, res, 'ok', 201);
-	// const msg = await controllers
-	// 	.addMessage(req.body.chat, req.body?.user, req.body?.message)
-	// 	.catch((code) =>
-	// 		response.error(
-	// 			req,
-	// 			res,
-	// 			'The user or the message is missing',
-	// 			code,
-	// 			'<ADD-MESSAGE> There is no user or message in the request'
-	// 		)
-	// 	);
-	// response.sucess(req, res, msg, 201);
+	const msg = await controllers
+		.addMessage(req.body.chat, req.body?.user, req.body?.message, req.file)
+		.catch((code) =>
+			response.error(
+				req,
+				res,
+				'The user or the message is missing',
+				code,
+				'<ADD-MESSAGE> There is no user or message in the request'
+			)
+		);
+	response.sucess(req, res, msg, 201);
 });
 
 messageRouter.patch('/:id', async function (req, res) {

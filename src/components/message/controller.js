@@ -1,15 +1,23 @@
+import { defaultPORT } from '../../constants/defaults.constant.js';
 import * as store from './store.js';
 
-export const addMessage = (chat, user, message) => {
+export const addMessage = (chat, user, message, file) => {
 	return new Promise((resolve, reject) => {
 		if (!chat || !user || !message) {
 			return reject(400);
 		}
+
+		let fileUrl = '';
+		if (file) {
+			fileUrl = `http://localhost:${defaultPORT}/files/${file.filename}`;
+		}
+		console.log(fileUrl);
 		const fullMessage = {
 			chat,
 			user,
 			message,
-			date: new Date()
+			date: new Date(),
+			file: fileUrl
 		};
 		store.add(fullMessage);
 		resolve(fullMessage);

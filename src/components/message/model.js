@@ -18,6 +18,9 @@ const messageSchema = new Schema({
 	date: {
 		type: String,
 		required: true
+	},
+	file: {
+		type: String
 	}
 });
 messageSchema.method('toJSON', function () {
