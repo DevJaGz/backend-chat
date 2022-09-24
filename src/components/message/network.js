@@ -13,7 +13,7 @@ messageRouter.get('/', async function (req, res) {
 
 messageRouter.post('/', async function (req, res) {
 	const msg = await controllers
-		.addMessage(req.body?.user, req.body?.message)
+		.addMessage(req.body.chat, req.body?.user, req.body?.message)
 		.catch((code) =>
 			response.error(
 				req,

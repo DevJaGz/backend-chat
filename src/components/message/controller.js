@@ -1,11 +1,12 @@
 import * as store from './store.js';
 
-export const addMessage = (user, message) => {
+export const addMessage = (chat, user, message) => {
 	return new Promise((resolve, reject) => {
-		if (!user || !message) {
+		if (!chat || !user || !message) {
 			return reject(400);
 		}
 		const fullMessage = {
+			chat,
 			user,
 			message,
 			date: new Date()

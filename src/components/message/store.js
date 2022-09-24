@@ -5,10 +5,13 @@ const addMessage = async (message) => {
 	await DBMessage.save().catch((e) => console.error(e));
 };
 
-const getMessages = async (filterUser) => {
-	let filter = {};
-	if (filterUser != null) filter = { user: filterUser };
-	return await Message.find(filter).catch(console.error);
+const getMessages = (filterUser) => {
+	return new Promise(async (resolve, reject) => {
+		let filter = {};
+		if (filterUser != null) filter = { user: filterUser };
+		const messages = await Message.find(filter).populate('user').catch(console.error);
+		resolve(messages);
+	});
 };
 
 const getMessageById = (id) => Message.findById(id);
