@@ -21,3 +21,13 @@ export const getMessages = () => {
 		resolve(messages);
 	});
 };
+
+export const updateMessage = (req) => {
+	return new Promise(async (resolve, reject) => {
+		if (!req.params.id) reject(400);
+		const message = await store.get(req.params.id).catch(console.error);
+		if (!message) reject(400);
+
+		resolve(message);
+	});
+};

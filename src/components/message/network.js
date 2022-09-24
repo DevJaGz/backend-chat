@@ -13,7 +13,7 @@ messageRouter.get('/', async function (req, res) {
 
 messageRouter.post('/', async function (req, res) {
 	const msg = await controllers
-		.addMessage(req.body.user, req.body.message)
+		.addMessage(req.body?.user, req.body?.message)
 		.catch((code) =>
 			response.error(
 				req,
@@ -24,4 +24,11 @@ messageRouter.post('/', async function (req, res) {
 			)
 		);
 	response.sucess(req, res, msg, 201);
+});
+
+messageRouter.patch('/:id', async function (req, res) {
+	const msg = await controllers
+		.updateMessage(req)
+		.catch((code) => response.error(req, res, 'id is missing', code, '<UPDATE-MESSAGE> id is missing'));
+	response.sucess(req, res, msg, 200);
 });
