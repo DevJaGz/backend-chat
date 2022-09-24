@@ -15,9 +15,10 @@ export const addMessage = (user, message) => {
 	});
 };
 
-export const getMessages = () => {
+export const getMessages = (req) => {
+	const filterUser = req.query.user || null;
 	return new Promise((resolve) => {
-		const messages = store.list();
+		const messages = store.list(filterUser);
 		resolve(messages);
 	});
 };
