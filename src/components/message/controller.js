@@ -1,5 +1,5 @@
 import { socket } from '../../conf/socket.config.js';
-import { defaultPORT } from '../../constants/defaults.constant.js';
+import { config } from '../../constants/config.constant.js';
 import { SOCKET_EVENTS_NAMES } from '../../constants/socket.constant.js';
 import * as store from './store.js';
 
@@ -11,7 +11,7 @@ export const addMessage = (chat, user, message, file) => {
 
 		let fileUrl = '';
 		if (file) {
-			fileUrl = `http://localhost:${defaultPORT}/files/${file.filename}`;
+			fileUrl = `http://localhost:${config.PORT}/files/${file.filename}`;
 		}
 		console.log(fileUrl);
 		const fullMessage = {

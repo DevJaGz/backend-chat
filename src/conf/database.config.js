@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
+import { config } from '../constants/config.constant.js';
 
 export const DBConnection = async () => {
 	try {
-		await mongoose
-			.connect('mongodb+srv://jgomez:%40abc12345@cluster0.omp6p1x.mongodb.net/chat-app-dev')
-			.catch((e) => console.error(e));
+		await mongoose.connect(config.BD_URL).catch((e) => console.error(e));
 		console.log('Database Online');
 	} catch (error) {
 		throw new Error(`Can not connect to Database:\n${JSON.stringify(error, null, 2)}`);
