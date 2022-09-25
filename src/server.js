@@ -12,7 +12,7 @@ DBConnection(); // Set Database Connection
 /* -------------------------------------------------------------------------- */
 /*                                 MIDELWARES                                 */
 /* -------------------------------------------------------------------------- */
-app.use(express.static('public')); // Serve static files
+app.use(config.PUBLIC_ROUTE, express.static('public')); // Serve static files
 app.use(express.json()); // Read and Parse Body
 app.use(cors()); // Enable cors for all connections
 /* --------------------------------- ROUTES --------------------------------- */
