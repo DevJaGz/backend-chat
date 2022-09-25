@@ -1,20 +1,21 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import http from 'http';
 import { DBConnection } from './conf/database.config.js';
+import { socket } from './conf/socket.config.js';
 import { defaultPORT } from './constants/defaults.constant.js';
 import { routes } from './network/routes.js';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const server = express(); // Create server
+const app = express();
+const server = http.Server(app);
+socket.connect(server);
+
 DBConnection(); // Set Database Connection
 /* -------------------------------------------------------------------------- */
 /*                                 MIDELWARES                                 */
 /* -------------------------------------------------------------------------- */
-server.use(express.static('public')); // Serve static files
-server.use(express.json()); // Read and Parse Body
+app.use(express.static('public')); // Serve static files
+app.use(express.json()); // Read and Parse Body
 /* --------------------------------- ROUTES --------------------------------- */
-routes(server); // Set App Routes
+routes(app); // Set App Routes
 
 /* -------------------------------------------------------------------------- */
 /*                                 RUN SERVER                                 */

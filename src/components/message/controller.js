@@ -1,4 +1,6 @@
+import { socket } from '../../conf/socket.config.js';
 import { defaultPORT } from '../../constants/defaults.constant.js';
+import { SOCKET_EVENTS_NAMES } from '../../constants/socket.constant.js';
 import * as store from './store.js';
 
 export const addMessage = (chat, user, message, file) => {
@@ -20,6 +22,7 @@ export const addMessage = (chat, user, message, file) => {
 			file: fileUrl
 		};
 		store.add(fullMessage);
+		socket.io.emit(SOCKET_EVENTS_NAMES.MESSAGE, fullMessage);
 		resolve(fullMessage);
 	});
 };
